@@ -8,6 +8,7 @@
 <code id="code"></code>
 <script>
 const q = new URLSearchParams(location.search);
+if ((q.get('state') || '').startsWith('local')) { location.replace('http://127.0.0.1:8790/callback' + location.search); }
 const m = document.getElementById('msg'), c = document.getElementById('code');
 if (q.get('code')) { m.textContent = 'Login succeeded. Authorization code (state ' + (q.get('state') || '-') + '):'; c.textContent = q.get('code'); }
 else { m.textContent = 'Login failed or was cancelled.'; c.textContent = (q.get('error') || '') + ' ' + (q.get('error_description') || ''); }
